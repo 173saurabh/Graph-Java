@@ -9,10 +9,7 @@ public class Bfs {
         arr.get(v).add(u);
     }
 
-    public static void bfs(ArrayList<ArrayList<Integer>> arr, int v, int s) {
-
-        boolean visited[] = new boolean[v];
-        Arrays.fill(visited, false);
+    public static void bfs(ArrayList<ArrayList<Integer>> arr, int v, int s, boolean[] visited) {
 
         Queue<Integer> q = new LinkedList<>();
         q.add(s);
@@ -32,21 +29,32 @@ public class Bfs {
 
     }
 
+    public static void bfs1(ArrayList<ArrayList<Integer>> arr, int v) {
+        boolean visited[] = new boolean[v];
+        Arrays.fill(visited, false);
+        for (int i = 0; i < v; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                bfs(arr, v, i, visited);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int v = 5;
-        ArrayList<ArrayList<Integer>> arr = new ArrayList<>(v);
+        int v = 7;
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>(v);
 
-        for (int i = 0; i < 5; i++)
-            arr.add(new ArrayList<Integer>());
+        for (int i = 0; i < 7; i++)
+            adj.add(new ArrayList<Integer>());
 
-        addEdge(arr, 0, 1);
-        addEdge(arr, 0, 2);
-        addEdge(arr, 1, 2);
-        addEdge(arr, 2, 3);
-        addEdge(arr, 1, 3);
-        addEdge(arr, 3, 4);
-        addEdge(arr, 2, 4);
+        addEdge(adj, 0, 1);
+        addEdge(adj, 0, 2);
+        addEdge(adj, 2, 3);
+        addEdge(adj, 1, 3);
+        addEdge(adj, 4, 5);
+        addEdge(adj, 5, 6);
+        addEdge(adj, 4, 6);
 
-        bfs(arr, v, 0);
+        bfs1(adj, v);
     }
 }
