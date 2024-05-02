@@ -21,11 +21,15 @@ public class Dfs {
     public static void dfs(ArrayList<ArrayList<Integer>> arr, int v, int s) {
         boolean[] visited = new boolean[v];
         Arrays.fill(visited, false);
+        int count = 0;
 
         for (int i = 0; i < v; i++) {
-            if (visited[i] == false)
+            if (visited[i] == false) {
                 dfsRec(arr, i, visited);
+                count++;
+            }
         }
+        System.out.println("The number of islands are: " + count);
 
     }
 
