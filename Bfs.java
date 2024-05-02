@@ -32,12 +32,15 @@ public class Bfs {
     public static void bfs1(ArrayList<ArrayList<Integer>> arr, int v) {
         boolean visited[] = new boolean[v];
         Arrays.fill(visited, false);
+        int islands = 0;
         for (int i = 0; i < v; i++) {
             if (!visited[i]) {
                 visited[i] = true;
                 bfs(arr, v, i, visited);
+                islands++;
             }
         }
+        System.out.println("Number of islands are: " + islands);
     }
 
     public static void main(String[] args) {
